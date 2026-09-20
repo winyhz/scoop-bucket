@@ -50,6 +50,6 @@ All manifests in this bucket are monitored and automatically updated using [Scoo
 
 ## 📄 License
 
-This repository and all manifest metadata are released under the **[MIT License](LICENSE)**.
+This repository and all manifest metadata are released under the **[The Unlicense](LICENSE)**.
 
 > **Note**: Software packages and binaries downloaded through these manifests remain subject to their respective original authors' licenses.
