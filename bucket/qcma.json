@@ -4,7 +4,7 @@
     "homepage": "https://codestation.github.io/qcma/",
     "license": "GPL-3.0-or-later",
     "url": "https://github.com/codestation/qcma/releases/download/v0.4.1/Qcma_setup-0.4.1.exe",
-    "hash": "638ac6ffc6b541300938ff5d5642d99d3dc711cecf7f338d6a86adab2ea0d2f0",
+    "hash": "5a4be9e92cf84b6fdedef3623c4fc76a9a239e98f88c0c4368bbb72caafdda03",
     "installer": {
         "args": [
             "/S",
