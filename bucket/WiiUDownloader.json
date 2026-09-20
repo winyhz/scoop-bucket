@@ -2,7 +2,7 @@
     "version": "3.2",
     "description": "Download Wii U games, updates, DLC, and demos directly from Nintendo's servers, no title keys needed.",
     "homepage": "https://github.com/Xpl0itU/WiiUDownloader",
-    "license": "GPL-3.0-or-later",
+    "license": "GPL-3.0",
     "architecture": {
         "64bit": {
             "url": "https://github.com/Xpl0itU/WiiUDownloader/releases/download/v3.2/WiiUDownloader-Windows.zip",
