@@ -5,6 +5,7 @@ on:
     paths:
       - 'bucket/**'
       - '.github/workflows/readme.yml'
+      - '.github/scripts/**'
   workflow_run:
     workflows: ["Excavator"]
     types: [completed]
@@ -21,45 +22,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@main
 
-      - name: Generate App List via github-script
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const path = require('path');
-
-            // 1. 读取 bucket 目录
-            const bucketDir = path.join(process.env.GITHUB_WORKSPACE, 'bucket');
-            if (!fs.existsSync(bucketDir)) {
-              console.log('No bucket directory found.');
-              return;
-            }
-
-            const files = fs.readdirSync(bucketDir).filter(f => f.endsWith('.json')).sort();
-
-            // 2. 提取每个清单的字段拼装 Markdown 行
-            const rows = files.map(file => {
-              const name = path.basename(file, '.json');
-              const data = JSON.parse(fs.readFileSync(path.join(bucketDir, file), 'utf8'));
-              const homepage = data.homepage || '#';
-              const version = data.version || 'N/A';
-              const desc = (data.description || 'No description provided.').replace(/\|/g, '-');
-              const lic = (typeof data.license === 'object' ? data.license?.identifier : data.license) || 'Unknown';
-              return `| [${name}](${homepage}) | \`${version}\` | ${desc} | ${lic} |`;
-            });
-
-            // 3. 构造表格并替换 README.md 中的占位内容
-            const table = [
-              '| Application | Version | Description | License |',
-              '| :--- | :--- | :--- | :--- |',
-              ...rows
-            ].join('\n');
-
-            const readmePath = path.join(process.env.GITHUB_WORKSPACE, 'README.md');
-            let content = fs.readFileSync(readmePath, 'utf8');
-            content = content.replace(/<!-- APPLIST:START -->[\s\S]*?<!-- APPLIST:END -->/, `<!-- APPLIST:START -->\n${table}\n<!-- APPLIST:END -->`);
-            fs.writeFileSync(readmePath, content, 'utf8');
-            console.log(`Successfully updated README.md with ${files.length} applications.`);
+      - name: Run Update Script
+        run: python3 .github/scripts/update_readme.py
 
       - name: Commit and Push if changed
         run: |
