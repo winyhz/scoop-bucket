@@ -15,3 +15,41 @@ To add this bucket to your local Scoop installation, run:
 
 ```powershell
 scoop bucket add winyhz https://github.com/winyhz/scoop-bucket
+```
+
+### 2. Install applications
+Once the bucket is added, you can install any package using:
+
+```powershell
+scoop install winyhz/<app-name>
+
+# Example:
+scoop install winyhz/ukmm
+```
+
+---
+
+## 📦 Available Applications
+
+The table below is **automatically updated** whenever manifests are added or updated.
+
+<!-- APPLIST:START -->
+| Application | Version | Description | License |
+| :--- | :--- | :--- | :--- |
+| [ukmm](https://github.com/NiceneNerd/ukmm) | `0.17.1` | U-King Mod Manager is a tool for managing and merging mods for The Legend of Zelda: Breath of the Wild. | GPL-3.0-or-later |
+<!-- APPLIST:END -->
+
+---
+
+## 🔄 Automatic Updates
+
+All manifests in this bucket are monitored and automatically updated using [ScoopInstaller/GithubActions](https://github.com/ScoopInstaller/GithubActions). When upstream repositories release new versions, manifests and checksums are checked, validated, and updated via GitHub Actions.
+
+---
+
+## 📄 License
+
+This repository and all manifest metadata are released under **[The Unlicense](LICENSE)** (Public Domain Dedication). 
+
+> **Note**: Software packages and binaries downloaded through these manifests remain subject to their respective original authors' licenses.
+```
