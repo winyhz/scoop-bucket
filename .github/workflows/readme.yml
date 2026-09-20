@@ -1,47 +1,25 @@
-name: Update README App List
+- name: Generate App List via github-script
+        uses: actions/github-script@main
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
 
-on:
-  push:
-    paths:
-      - 'bucket/**'
-      - '.github/workflows/update-readme.yml'
-  workflow_run:
-    workflows: ["Excavator"]
-    types: [completed]
-  workflow_dispatch:
+            const bucketDir = path.join(process.env.GITHUB_WORKSPACE, 'bucket');
+            const files = fs.readdirSync(bucketDir).filter(f => f.endsWith('.json')).sort();
 
-permissions:
-  contents: write
+            const rows = files.map(file => {
+              const name = path.basename(file, '.json');
+              const data = JSON.parse(fs.readFileSync(path.join(bucketDir, file), 'utf8'));
+              const homepage = data.homepage || '#';
+              const version = data.version || 'N/A';
+              const desc = (data.description || 'No description provided.').replace(/\|/g, '-');
+              const lic = (typeof data.license === 'object' ? data.license?.identifier : data.license) || 'Unknown';
+              return `| [${name}](${homepage}) | \`${version}\` | ${desc} | ${lic} |`;
+            });
 
-jobs:
-  update-readme:
-    name: Update README
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@main
-
-      - name: Generate App List
-        shell: pwsh
-        run: |
-          $rows = Get-ChildItem bucket/*.json -ErrorAction SilentlyContinue | ForEach-Object {
-            $j = Get-Content $_.FullName -Raw | ConvertFrom-Json
-            $lic = if ($j.license.identifier) { $j.license.identifier } else { $j.license }
-            if (-not $lic) { $lic = "Unknown" }
-            $desc = if ($j.description) { $j.description -replace '\|', '-' } else { "No description provided." }
-            $ver = if ($j.version) { $j.version } else { "N/A" }
-            $home = if ($j.homepage) { $j.homepage } else { "#" }
-            "| [$($_.BaseName)]($home) | `$($ver)` | $desc | $lic |"
-          }
-
-          $table = "| Application | Version | Description | License |`n| :--- | :--- | :--- | :--- |`n" + ($rows -join "`n")
-          $readme = Get-Content README.md -Raw
-          $updated = $readme -replace '(?s)<!-- APPLIST:START -->.*?<!-- APPLIST:END -->', "<!-- APPLIST:START -->`n$table`n<!-- APPLIST:END -->"
-          [System.IO.File]::WriteAllText("README.md", $updated, [System.Text.Encoding]::UTF8)
-
-      - name: Commit and Push if changed
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: auto-update application list in README" && git push)
+            const table = ['| Application | Version | Description | License |', '| :--- | :--- | :--- | :--- |', ...rows].join('\n');
+            const readmePath = path.join(process.env.GITHUB_WORKSPACE, 'README.md');
+            let content = fs.readFileSync(readmePath, 'utf8');
+            content = content.replace(/<!-- APPLIST:START -->[\s\S]*?<!-- APPLIST:END -->/, `<!-- APPLIST:START -->\n${table}\n<!-- APPLIST:END -->`);
+            fs.writeFileSync(readmePath, content, 'utf8');
