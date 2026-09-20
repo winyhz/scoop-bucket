@@ -1,1 +1,21 @@
-
+{
+    "homepage": "https://github.com/Xpl0itU/WiiUDownloader",
+    "description": "A tool for managing and merging mods for The Legend of Zelda: Breath of the Wild",
+    "url": "https://github.com/Xpl0itU/WiiUDownloader/releases/download/v3.2/WiiUDownloader-Windows.zip",
+    "version": "3.2",
+    "hash": "1111111",
+    "license": "GPL-3.0",
+    "persist": "settings.json",
+    "shortcuts": [
+        [
+            "WiiUDownloader.exe",
+            "WiiUDownloader"
+        ]
+    ],
+    "checkver": {
+        "github": "https://github.com/Xpl0itU/WiiUDownloader"
+    },
+    "autoupdate": {
+        "url": "https://github.com/Xpl0itU/WiiUDownloader/releases/download/v$version/WiiUDownloader-Windows.zip"
+    }
+}
