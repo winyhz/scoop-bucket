@@ -1,0 +1,27 @@
+{
+    "version": "0.4.1",
+    "description": "Cross-platform content manager assistant for the PS Vita",
+    "homepage": "https://codestation.github.io/qcma/",
+    "license": "GPL-3.0-or-later",
+    "notes": "If your PS Vita is not recognized via USB, you may need to install the PS Vita driver (WinUSB / libusbK) using Zadig.",
+    "url": "https://github.com/codestation/qcma/releases/download/v0.4.1/Qcma_setup-0.4.1.exe#/dl.7z",
+    "hash": "",
+    "pre_install": "Remove-Item \"$dir\\`$*\", \"$dir\\uninstall*.nsis\" -Recurse -Force -ErrorAction SilentlyContinue",
+    "bin": [
+        "qcma.exe",
+        "qcma_cli.exe"
+    ],
+    "shortcuts": [
+        [
+            "qcma.exe",
+            "Qcma"
+        ]
+    ],
+    "checkver": {
+        "github": "https://github.com/codestation/qcma",
+        "regex": "Qcma_setup-([\\d.]+)\\.exe"
+    },
+    "autoupdate": {
+        "url": "https://github.com/codestation/qcma/releases/download/v$version/Qcma_setup-$version.exe#/dl.7z"
+    }
+}
