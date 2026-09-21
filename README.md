@@ -36,6 +36,7 @@ The table below is **automatically updated** whenever manifests are added or upd
 <!-- APPLIST:START -->
 | Application | Version | Description | License |
 | :--- | :--- | :--- | :--- |
+| [Switch-Toolbox](https://github.com/KillzXGaming/Switch-Toolbox) | `Final` | A tool to edit and preview many video game file formats from Nintendo Switch, Wii U, and 3DS. | GPL-3.0-or-later |
 | [WiiUDownloader](https://github.com/Xpl0itU/WiiUDownloader) | `3.2` | Download Wii U games, updates, DLC, and demos directly from Nintendo's servers, no title keys needed. | GPL-3.0-or-later |
 | [qcma](https://codestation.github.io/qcma/) | `0.4.1` | Cross-platform content manager assistant for the PS Vita | GPL-3.0-or-later |
 | [ukmm](https://github.com/NiceneNerd/ukmm) | `0.17.1` | U-King Mod Manager is a tool for managing and merging mods for The Legend of Zelda: Breath of the Wild. It should be considered a successor to BCML. | GPL-3.0-or-later |
