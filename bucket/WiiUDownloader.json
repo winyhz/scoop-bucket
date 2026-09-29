@@ -9,6 +9,10 @@
             "hash": "6645ad7de293659004cdb9db406e64160404da3b7c1bf9e897fa250f8462f526"
         }
     },
+    "pre_install": [
+        "if (!(Test-Path \"$persist_dir\\settings.json\")) { New-Item \"$dir\\settings.json\" -ItemType File | Out-Null }",
+        "if (!(Test-Path \"$persist_dir\\queue.json\")) { New-Item \"$dir\\queue.json\" -ItemType File | Out-Null }"
+    ],
     "bin": [
         [
             "WiiUDownloader.exe",
@@ -22,7 +26,8 @@
         ]
     ],
     "persist": [
-        "settings.json"
+        "settings.json",
+        "queue.json"
     ],
     "checkver": "github",
     "autoupdate": {
