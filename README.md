@@ -36,6 +36,7 @@ The table below is **automatically updated** whenever manifests are added or upd
 <!-- APPLIST:START -->
 | Application | Version | Description | License |
 | :--- | :--- | :--- | :--- |
+| [FluffyModManager](https://www.fluffyquack.com/) | `2026.09.22.0057` | Mod manager, mod downloader, and trainer for various Capcom titles. | Freeware |
 | [OptiscalerClient](https://github.com/Optiscaler-Client/Optiscaler-Client) | `1.0.7.2` | A modern, high-performance desktop utility designed to simplify the installation, management, and update of the OptiScaler mod across your game library. | GPL-3.0-or-later |
 | [SwitchToolbox](https://github.com/KillzXGaming/Switch-Toolbox) | `Final` | A tool to edit and preview many video game file formats from Nintendo Switch, Wii U, and 3DS. | GPL-3.0-or-later |
 | [WiiUDownloader](https://github.com/Xpl0itU/WiiUDownloader) | `3.2` | Download Wii U games, updates, DLC, and demos directly from Nintendo's servers, no title keys needed. | GPL-3.0-or-later |
